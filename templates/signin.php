@@ -153,7 +153,7 @@
                   case 'pseudo':
                   ?>
                   <div class="alert alert-danger alert-dismissible" role="alert">
-                    Votre e-mail et mot de passe sont invalides .
+                    Votre e-mail et mot de passe sont invalides.
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
                   <?php
