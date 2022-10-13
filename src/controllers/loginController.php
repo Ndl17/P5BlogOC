@@ -1,6 +1,6 @@
 <?php
 
-require_once('src/model/loginModel.php');
+require_once('src/model/user.php');
 
 function logInShow(){
   logIn();

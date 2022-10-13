@@ -1,7 +1,7 @@
 <?php
 
 // fonction pour se connecter à la base MySQL
-function dbConnectSign()
+function dbConnectLog()
 {
   try {
     $database = new PDO(
@@ -18,11 +18,52 @@ function dbConnectSign()
 }
 
 
+function logIn(){
+  $database=dbConnectLog();
+
+  if (isset($_POST['email'])&&isset($_POST['password'])) {
+
+    $email= htmlspecialchars($_POST['email']);
+    $password= htmlspecialchars($_POST['password']);
+
+    $checkUser= $database->prepare('SELECT pseudo, email, password FROM iduser WHERE email =?');
+    $checkUser->execute(array($email));
+    $data = $checkUser->fetch();
+    $row = $checkUser->rowCount();
+
+ //Dessous migrer ce code vers le controller en question
+    if ($row == 1) {
+
+      if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      //  $password = hash('sha256', $password);
+        //  var_dump($password);
+        if ($data['password'] === $password) {
+          //    var_dump($_SESSION['user']);
+          $_SESSION['user'] = $data['pseudo'];
+
+
+        }else {
+      //    header('Location:index.php?login_err=password');
+        }
+
+      }else {
+    //    header('Location:index.php?login_err=email');
+      }
+
+    } else {
+    //  header('Location:index.php?login_err=already');
+    }
+
+
+  }
+
+}
+
 
 
 
 function signIn(){
-  $database=dbConnectSign();
+  $database=dbConnectLog();
 
   if (isset($_POST['pseudo'])&&isset($_POST['email'])&&isset($_POST['password'])) {
 
@@ -35,6 +76,8 @@ function signIn(){
     $data = $checkUser->fetch();
     $row = $checkUser->rowCount();
 
+
+//ci dessous migrer code vers controller
     if ($row==0) {
 
       if (strlen($pseudo <= 100)) {
@@ -72,8 +115,3 @@ function signIn(){
   }
 
 }
-
-
-
-
-?>

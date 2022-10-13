@@ -1,6 +1,6 @@
 <?php
 
-require_once('src/model.php');
+require_once('src/model/article.php');
 require_once('src/model/comment.php');
 
 function articleShow(string $identifier){

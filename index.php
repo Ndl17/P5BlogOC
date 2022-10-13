@@ -9,11 +9,16 @@ require_once('src/controllers/signInController.php');
 try {
   session_start();
   if (isset($_SESSION['user'])) {
+    //si l'utilisateur est log ici on gérera les droit d'accès aux pages
+
+
+  }else{
 
 
     if (isset($_GET['action']) && $_GET['action'] !== '') {
-      if ($_GET['action'] === 'article') {
 
+      if ($_GET['action'] === 'article') {
+        //renvoi les articles selon leur indentifiant
         if (isset($_GET['id']) && $_GET['id'] > 0) {
           $identifier = $_GET['id'];
           articleShow($identifier);
@@ -21,8 +26,19 @@ try {
           throw new Exception('Aucun identifiant de billet envoyé');
         }
       }elseif ($_GET['action'] === 'listeArticles') {
+        //envoi la page liste des articles
         listArticles();
-      }elseif ($_GET['action'] === 'logOut') {
+      }elseif ($_GET['action'] === 'signIn') {
+        signInShow();
+        header("location:/index.php?action=logIn"); //to redirect back to "index.php" after logging out
+        exit();
+      }elseif ($_GET['action'] === 'logIn') {
+        logInShow();
+        header("location:/index.php"); //to redirect back to "index.php" after logging out
+        exit();
+
+      }
+      elseif ($_GET['action'] === 'logOut') {
         session_destroy(); //destroy the session
         header("location:/index.php"); //to redirect back to "index.php" after logging out
         exit();
@@ -41,26 +57,16 @@ try {
       }
 
     }else {
+
       homepage();
-      //  logInShow();
     }
 
-  }else{
-
-    if (isset($_GET['action']) && $_GET['action'] !== '') {
-      if ($_GET['action'] === 'signIn') {
-        signInShow();
-      }elseif ($_GET['action'] === 'logIn') {
-        logInShow();
 
 
 
-      }
 
-    }else {
 
-      logInShow();
-    }
+
   }
 
 } catch (Exception $e) {
