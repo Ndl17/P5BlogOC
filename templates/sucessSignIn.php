@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<style>
-#returnBtn{
-  background-color: #f5f5f9 !important;
-  margin-bottom: 5px;
-
+<style media="screen">
+h4 , p{
+  text-align: center;
 }
+
+
+.img-fluid {
+  max-width: 70% !important;
+  margin-left: -71px;
+}
+
+a{
+  color: white !important;
+}
+
 </style>
 
 <!-- beautify ignore:start -->
@@ -67,8 +76,6 @@ data-template="vertical-menu-template-free"
     <div class="authentication-wrapper authentication-basic container-p-y">
       <div class="authentication-inner">
         <!-- Register Card -->
-        <button type="button" class="btn rounded-pill btn-primary" id='returnBtn'><i class="bx bx-chevron-left bx-sm align-middle" style="color:#696cff" id="iconReturn"></i><a href="index.php" id="returnLink">Retour</a></button>
-
         <div class="card">
           <div class="card-body">
             <!-- Logo -->
@@ -133,72 +140,32 @@ data-template="vertical-menu-template-free"
           </a>
         </div>
         <!-- /Logo -->
-        <h4 class="mb-2">L'Aventure commence ici  🚀</h4>
-        <p class="mb-4">Créez votre compte pour rejoindre le blog !</p>
-        <form id="formAuthentication" class="mb-3" action="index.php?action=signIn"  method="POST">
-          <div class="mb-3">
-            <label for="username" class="form-label">Pseudo</label>
-            <input
-            type="text"
-            class="form-control"
-            id="username"
-            name="pseudo"
-            placeholder="Entrez votre pseudo"
-            min="5"
-            max="50"
-            autofocus
-            required
-            />
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input
-            type="text"
-            class="form-control"
-            id="email"
-            name="email"
-            placeholder="Entrez votre email"
-            min="25"
-            max="100"
-            required
-            />
-          </div>
-          <div class="mb-3 form-password-toggle">
-            <label class="form-label" for="password">Mot de Passe</label>
-            <div class="input-group input-group-merge">
-              <input
-              type="password"
-              id="password"
-              class="form-control"
-              name="password"
-              placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-              aria-describedby="password"
-              min="5"
-              max="100"
-              required
-              />
-              <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-            </div>
-          </div>
 
-          <div class="mb-3">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" />
-              <label class="form-check-label" for="terms-conditions">
-                je reconnais
-                <a href="javascript:void(0);">avoir lu et accepté les conditions générales de services et d'utilisation</a>
-              </label>
-            </div>
-          </div>
-          <button class="btn btn-primary d-grid w-100" name="submitUser">S'inscrire</button>
-        </form>
+        <div class="container text-center">
+          <div class="row-lg-3">
+            <img class="img-fluid" id="imgHome" src="../assets/img/illustrations/undraw_join.svg" alt="Card image cap" />
 
-        <p class="text-center">
-          <span>Vous avez déjà un compte?</span>
-          <a href="index.php?action=logIn">
-            <span>Se Connecter</span>
-          </a>
-        </p>
+            </div>
+            <div class="row-lg-3">
+              <div class="alert alert-info" role="alert">
+                <h4 class="mb-2">L'Aventure commence ici  🚀</h4>
+                <p>Votre incription a bien été validée !</p>
+              </div>
+              </div>
+              <div class="row-lg-3">
+                <button type="button" class="btn rounded-pill btn-primary"><a href="index.php?action=logIn"> Connectez-vous !</a></button>
+                </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
       </div>
     </div>
     <!-- Register Card -->

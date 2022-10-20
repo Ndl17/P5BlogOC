@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 
-<!-- =========================================================
-* Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
-==============================================================
+<style>
+#returnBtn{
+  background-color: #f5f5f9 !important;
+  margin-bottom: 5px;
 
-* Product Page: https://themeselection.com/products/sneat-bootstrap-html-admin-template/
-* Created by: ThemeSelection
-* License: You must have a valid license purchased in order to legally use the theme for your project.
-* Copyright ThemeSelection (https://themeselection.com)
-
-=========================================================
--->
-<!-- beautify ignore:start -->
+}
+</style>
 <html
 lang="en"
 class="light-style customizer-hide"
@@ -71,7 +66,10 @@ data-template="vertical-menu-template-free"
     <div class="authentication-wrapper authentication-basic container-p-y">
       <div class="authentication-inner">
         <!-- Register -->
+        <button type="button" class="btn rounded-pill btn-primary" id='returnBtn'><i class="bx bx-chevron-left bx-sm align-middle" style="color:#696cff" id="iconReturn"></i><a href="index.php" id="returnLink">Retour</a></button>
+
         <div class="card">
+
           <div class="card-body">
             <!-- Logo -->
             <div class="app-brand justify-content-center">
@@ -136,37 +134,10 @@ data-template="vertical-menu-template-free"
         </div>
         <!-- /Logo -->
         <h4 class="mb-2">Bienvenue sur mon Blog! 👋</h4>
-        <p class="mb-4">Connectez-vous pour pouvoir accéder aux derniers articles !</p>
-
-        <?php if (isset($_GET['login_err'])) {
-          $error= htmlspecialchars($_GET['login_err']);
-          switch ($error) {
-            case 'password':
-            ?>
-            <div class="alert alert-danger alert-dismissible" role="alert">
-              Votre mot de passe est incorrect.
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-
-            <?php
-            break;
-
-            case 'email':
-            ?>
-            <div class="alert alert-danger alert-dismissible" role="alert">
-              Votre e-mail est incorrect.
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-
-            <?php
-            break;
-            default:
-            break;
-          }
-        } ?>
-
-        <form id="formAuthentication" class="mb-3" action="index.php" method="POST">
+        <p class="mb-4">Connectez-vous pour commenter ou ajouter de nouveaux articles !</p>
+        <form id="formAuthentication" class="mb-3" action="index.php?action=logIn" method="POST">
           <div class="mb-3">
+            <p class='error'><?php echo $email_format_error; ?></p>
             <label for="email" class="form-label">Email</label>
             <input
             type="text"
@@ -175,9 +146,11 @@ data-template="vertical-menu-template-free"
             name="email"
             placeholder="Entez votre email"
             autofocus
+            required
             />
           </div>
           <div class="mb-3 form-password-toggle">
+            <p class='error'><?php echo $password_error; ?></p>
             <div class="d-flex justify-content-between">
               <label class="form-label" for="password">Mot de Passe</label>
               <a href="auth-forgot-password-basic.html">
@@ -192,6 +165,7 @@ data-template="vertical-menu-template-free"
               name="password"
               placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
               aria-describedby="password"
+              required
               />
               <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
             </div>

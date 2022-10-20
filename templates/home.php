@@ -12,7 +12,14 @@
 
 
 <div class="card">
+  <?php  if (isset($_SESSION['user'])) {
+    ?>
+    <div class="alert alert-success" role="alert">Bienvenue <?php echo $_SESSION['user']; ?> 👋, passez une bonne journée ! </div>
+
+
+  <?php } ?>
   <div class="card-body">
+
     <h5 class="card-title" style="text-align:center;">Présentation</h5>
     <h6 class="card-subtitle text-muted" style="text-align:center;">Créateur du Site</h6>
   </div>

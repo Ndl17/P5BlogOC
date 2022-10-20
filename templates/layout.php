@@ -165,14 +165,16 @@ data-template="vertical-menu-template-free"
               <div data-i18n="Without menu">Liste des articles</div>
             </a>
           </li>
-          <li class="menu-item">
-            <a href="" class="menu-link">
-              <div data-i18n="Without navbar">Ajouter un article</div>
-            </a>
-          </li>
-        </ul>
-      </li>
-
+          <?php  if (isset($_SESSION['user'])) {
+            ?>
+            <li class="menu-item">
+              <a href="index.php?action=addArticle" class="menu-link">
+                <div data-i18n="Without navbar">Ajouter un article</div>
+              </a>
+            </li>
+          </ul>
+        </li>
+      <?php } ?>
 
       <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -217,9 +219,16 @@ data-template="vertical-menu-template-free"
 
           <ul class="navbar-nav flex-row align-items-center ms-auto">
             <!-- Place this tag where you want the button to render. -->
-            <button type="button" class="btn"><a href="index.php?action=logIn" class="btn rounded-pill btn-primary">Connexion</a></button>
-            <button type="button" class="btn"><a href="index.php?action=signIn" class="btn rounded-pill btn-secondary">S'inscrire</a></button>
+            <?php if( isset($_SESSION['user']) && !empty($_SESSION['user']) )
+            {
+              ?>
+              <button type="button" class="btn"><a href="index.php?action=logOut" class="btn rounded-pill btn-primary">Se déconnecter</a></button>
+            <?php }else {
+              ?>
 
+              <button type="button" class="btn"><a href="index.php?action=logIn" class="btn rounded-pill btn-primary">Connexion</a></button>
+              <button type="button" class="btn"><a href="index.php?action=signIn" class="btn rounded-pill btn-secondary">S'inscrire</a></button>
+            <?php } ?>
 
             <!-- User -->
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
@@ -289,7 +298,7 @@ data-template="vertical-menu-template-free"
 
 
 
-    <?= $content;?>
+          <?= $content;?>
 
 
 
