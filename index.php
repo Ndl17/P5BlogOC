@@ -20,33 +20,37 @@ try {
     if (isset($_GET['action']) && $_GET['action'] !== '') {
 
 
-        if ($_GET['action'] === 'article') {
-          //renvoi les articles selon leur indentifiant
-          if (isset($_GET['id']) && $_GET['id'] > 0) {
-            $identifier = $_GET['id'];
-            articleShow($identifier);
-          } else {
-            throw new Exception('Aucun identifiant de billet envoyé');
-          }
-        }elseif ($_GET['action'] === 'listeArticles') {
-          //envoi la page liste des articles
-          listArticles();
-        }elseif ($_GET['action'] === 'addArticle') {
-          //envoi la page liste des articles
-          addArticle();
-        }elseif ($_GET['action'] === 'addComment') {
-          if (isset($_GET['id']) && $_GET['id']>0 ) {
-            $identfier = $_GET['id'];
-            addComment($identifier, $_POST);
-          }else {
-            throw new Exception('Aucun identifiant de billet envoyé');
-          }
-
-        }elseif ($_GET['action'] === 'logOut') {
-          header("Refresh:0; url=index.php");
-          session_destroy(); //destroy the session
-          exit();
+      if ($_GET['action'] === 'article') {
+        //renvoi les articles selon leur indentifiant
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+          $identifier = $_GET['id'];
+          articleShow($identifier);
+        } else {
+          throw new Exception('Aucun identifiant de billet envoyé');
         }
+      }elseif ($_GET['action'] === 'listeArticles') {
+        //envoi la page liste des articles
+        listArticles();
+      }elseif ($_GET['action'] === 'addArticle') {
+
+      //  addArticleShow();
+        addArticle($_POST);
+
+
+      }elseif ($_GET['action'] === 'addComment') {
+        if (isset($_GET['id']) && $_GET['id']>0 ) {
+          $identifier = $_GET['id'];
+          addComment($identifier, $_POST);
+
+        }else {
+          throw new Exception('Aucun identifiant de billet envoyé');
+        }
+
+      }elseif ($_GET['action'] === 'logOut') {
+        header("Refresh:0; url=index.php");
+        session_destroy(); //destroy the session
+        exit();
+      }
 
 
     }else {

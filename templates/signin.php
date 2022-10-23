@@ -3,7 +3,7 @@
 #returnBtn{
   background-color: #f5f5f9 !important;
   margin-bottom: 5px;
-
+  color: #696cff;
 }
 </style>
 
@@ -67,7 +67,7 @@ data-template="vertical-menu-template-free"
     <div class="authentication-wrapper authentication-basic container-p-y">
       <div class="authentication-inner">
         <!-- Register Card -->
-        <button type="button" class="btn rounded-pill btn-primary" id='returnBtn'><i class="bx bx-chevron-left bx-sm align-middle" style="color:#696cff" id="iconReturn"></i><a href="index.php" id="returnLink">Retour</a></button>
+        <a href="index.php" class="btn rounded-pill btn-primary" id="returnBtn"><i class="bx bx-chevron-left bx-sm align-middle"style="color:#696cff" id="iconReturn"></i>Retour</a>
 
         <div class="card">
           <div class="card-body">

@@ -5,7 +5,7 @@ function getComments($identifier) {
 
 	$database = dbCommentConnect();
 	$statement = $database->prepare(
-		"SELECT iduser.pseudo, comment.contentCom, comment.dateComment FROM iduser INNER JOIN comment ON iduser.id_user = comment.author_id WHERE comment.article_id = ? "
+		"SELECT iduser.pseudo, comment.contentCom, comment.dateComment FROM iduser INNER JOIN comment ON iduser.id_user = comment.author_id WHERE comment.article_id = ? AND comment.isChecked != 0 "
 	);
 
 	$statement->execute([$identifier]);
@@ -23,18 +23,20 @@ function getComments($identifier) {
 		return $commentId;
 	}
 
-/*
-	function createComment(string $articles, string $author, string $comment)
+
+	function createComment(string $articles, string $comment)
 	{
+
+		$date=date("Y-m-d H:i:s");
 		$database = dbCommentConnect();
 		$statement = $database->prepare(
-	    	'INSERT INTO comments(post_id, author, comment, comment_date) VALUES(?, ?, ?, NOW())'
+	    	'INSERT INTO comment(contentCom, dateComment, author_id, article_id) VALUES(?, ?, ?, ?)'
 		);
-		$affectedLines = $statement->execute([$post, $author, $comment]);
+		$affectedLines = $statement->execute([$comment, $date, $_SESSION["userId"], $articles]);
 
 		return ($affectedLines > 0);
 	}
-*/
+
 
 // fonction pour se connecter à la base MySQL
 function dbCommentConnect()

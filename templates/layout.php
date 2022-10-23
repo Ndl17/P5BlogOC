@@ -222,12 +222,12 @@ data-template="vertical-menu-template-free"
             <?php if( isset($_SESSION['user']) && !empty($_SESSION['user']) )
             {
               ?>
-              <button type="button" class="btn"><a href="index.php?action=logOut" class="btn rounded-pill btn-primary">Se déconnecter</a></button>
+              <button type="button" class="btn"><a href="index.php?action=logOut" class="btn rounded-pill btn-primary btn-sm">Se déconnecter</a></button>
             <?php }else {
               ?>
 
-              <button type="button" class="btn"><a href="index.php?action=logIn" class="btn rounded-pill btn-primary">Connexion</a></button>
-              <button type="button" class="btn"><a href="index.php?action=signIn" class="btn rounded-pill btn-secondary">S'inscrire</a></button>
+              <button type="button" class="btn" style="margin-right: -30px"><a href="index.php?action=logIn" class="btn rounded-pill btn-primary btn-sm">Connexion</a></button>
+              <button type="button" class="btn"><a href="index.php?action=signIn" class="btn rounded-pill btn-secondary btn-sm">S'inscrire</a></button>
             <?php } ?>
 
             <!-- User -->
@@ -247,38 +247,64 @@ data-template="vertical-menu-template-free"
                         </div>
                       </div>
                       <div class="flex-grow-1">
-                        <span class="fw-semibold d-block">John Doe</span>
-                        <small class="text-muted">Admin</small>
+                        <?php if( isset($_SESSION['user']) && !empty($_SESSION['user']) )
+                        {
+                          ?>
+                          <span class="fw-semibold d-block"><?php echo $_SESSION["user"]; ?></span>
+                        <?php }else {
+                          ?>
+                          <span class="fw-semibold d-block">Utilisateur</span>
+                        <?php  } ?>
+                        <?php if( isset($_SESSION['user']) && !empty($_SESSION['user']) )
+                        {
+                          ?>
+                          <small class="text-muted">Admin</small>
+                        <?php }else {
+                          ?>
+                          <small class="text-muted">Invité</small>
+                        <?php   } ?>
+
                       </div>
                     </div>
                   </a>
                 </li>
-                <li>
-                  <div class="dropdown-divider"></div>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    <i class="bx bx-user me-2"></i>
-                    <span class="align-middle">My Profile</span>
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    <i class="bx bx-cog me-2"></i>
-                    <span class="align-middle">Settings</span>
-                  </a>
-                </li>
+                <?php if( isset($_SESSION['user']) && !empty($_SESSION['user']) )
+                {
+                  ?>
+                  <li>
+                    <div class="dropdown-divider"></div>
+                  </li>
 
+                  <li>
+                    <a class="dropdown-item" href="#">
+                      <i class="bx bx-user me-2"></i>
+                      <span class="align-middle">My Profile</span>
+                    </a>
+                  </li>
+                <?php } ?>
+                <?php if( isset($_SESSION['user']) && !empty($_SESSION['user']) )
+                { ?>
+                  <li>
+                    <a class="dropdown-item" href="#">
+                      <i class="bx bx-cog me-2"></i>
+                      <span class="align-middle">Settings</span>
+                    </a>
+                  </li>
+                <?php } ?>
+                <?php if( isset($_SESSION['user']) && !empty($_SESSION['user']) )
+                {
+                  ?>
+                  <li>
+                    <div class="dropdown-divider"></div>
+                  </li>
 
-                <li>
-                  <div class="dropdown-divider"></div>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="index.php?action=logOut">
-                    <i class="bx bx-power-off me-2"></i>
-                    <span class="align-middle">Log Out</span>
-                  </a>
-                </li>
+                  <li>
+                    <a class="dropdown-item" href="index.php?action=logOut">
+                      <i class="bx bx-power-off me-2"></i>
+                      <span class="align-middle">Se déconnecter</span>
+                    </a>
+                  </li>
+                <?php } ?>
               </ul>
             </li>
             <!--/ User -->

@@ -71,7 +71,7 @@ hr{
   </div>
   <div class="card-body">
 
-<form action="index.php?action=addComment&id=<?= $articleId['idArticle'] ?>" method="post">
+    <form action="index.php?action=addComment&id=<?= $articleId['idArticle'] ?>" method="post">
       <div class="mb-3">
         <label class="form-label" for="basic-icon-default-fullname">Pseudo</label>
         <div class="input-group input-group-merge">
@@ -83,9 +83,9 @@ hr{
             class="form-control"
             id="author"
             name="author"
-            placeholder="John Doe"
-            aria-label="John Doe"
             aria-describedby="basic-icon-default-fullname2"
+            readonly="readonly"
+            value="<?php echo $_SESSION['user']; ?>"
             />
           </div>
         </div>
@@ -110,14 +110,14 @@ hr{
         </form>
 
 
-  </div>
+      </div>
 
-</div>
-
-
+    </div>
 
 
-<!-- End of Main Content -->
-<?php $content = ob_get_clean();?>
-<?php require('layout.php') ?>
-</html>
+
+
+    <!-- End of Main Content -->
+    <?php $content = ob_get_clean();?>
+    <?php require('layout.php') ?>
+    </html>

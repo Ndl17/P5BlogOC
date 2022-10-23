@@ -1,27 +1,22 @@
 
 
 <style>
-.comment{
-  background: linear-gradient(114deg, rgb(95 97 230 / 16%) 0%, rgb(231 107 107 / 28%) 100%);
+#title{
+  height:38px;
 }
 
-hr{
-  margin-top: 8px !important;
-  margin-bottom: 8px !important;
-  border: 0 !important;
-  height: 1px !important;
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))!important;
+#chapo{
+  height:38px;
+}
+
+#content{
+  height:180px;
 }
 </style>
 
 
 <?php ob_start(); ?>
 <!-- Begin Page Content -->
-
-
-
-
-
 
 <!-- add comment Card  -->
 
@@ -31,8 +26,7 @@ hr{
     <h6 class="m-0 font-weight-bold text-primary">Ajouter un nouvel article</h6>
   </div>
   <div class="card-body">
-
-<form action="index.php?" method="post">
+    <form action="index.php?action=addArticle" method="post">
       <div class="mb-3">
         <label class="form-label" for="basic-icon-default-fullname">Pseudo</label>
         <div class="input-group input-group-merge">
@@ -44,41 +38,78 @@ hr{
             class="form-control"
             id="author"
             name="author"
-            placeholder="John Doe"
             aria-label="John Doe"
             aria-describedby="basic-icon-default-fullname2"
+            value="<?php echo $_SESSION["user"];  ?>"
+            readonly="readonly"
             />
+
           </div>
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="basic-icon-default-message">Message</label>
+          <label class="form-label" for="basic-icon-default-message">Titre</label>
           <div class="input-group input-group-merge">
-            <span id="basic-icon-default-message2" class="input-group-text"
+            <span id="basic-icon-default-title" class="input-group-text"
             ><i class="bx bx-comment"></i
               ></span>
               <textarea
-              id="comment"
-              name="comment"
-              class="form-control"
-              placeholder="Tapez votre texte ici !"
-              aria-label="Hi, Do you have a moment to talk Joe?"
+              id="title"
+              name="title"
+              class="form-control text"
+              placeholder="Saisissez votre titre"
               aria-describedby="basic-icon-default-message2"
+              required
               ></textarea>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary">Valider</button>
-        </form>
+
+          <div class="mb-3">
+            <label class="form-label" for="basic-icon-default-message">Chapô</label>
+            <div class="input-group input-group-merge">
+              <span id="basic-icon-default-chapo" class="input-group-text"
+              ><i class="bx bx-comment"></i
+                ></span>
+                <textarea
+                id="chapo"
+                name="chapo"
+                class="form-control text"
+                placeholder="Saisissez un chapô"
+                aria-describedby="basic-icon-default-message2"
+                required
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="basic-icon-default-message">Contenu</label>
+              <div class="input-group input-group-merge">
+                <span id="basic-icon-default-content" class="input-group-text"
+                ><i class="bx bx-comment"></i
+                  ></span>
+                  <textarea
+                  id="content"
+                  name="content"
+                  class="form-control text"
+                  placeholder="Saisissez votre contenu"
+                  aria-describedby="basic-icon-default-message2"
+                  required
+                  ></textarea>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary">Valider</button>
+            </form>
 
 
-  </div>
+          </div>
 
-</div>
-
-
+        </div>
 
 
-<!-- End of Main Content -->
-<?php $content = ob_get_clean();?>
-<?php require('layout.php') ?>
-</html>
+
+
+        <!-- End of Main Content -->
+        <?php $content = ob_get_clean();?>
+        <?php require('layout.php') ?>
+        </html>

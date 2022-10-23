@@ -8,7 +8,7 @@ function logInShow(){
   $loginData=list($email,$password,$data,$row)=logIn();
   $password_error = null;
   $email_format_error = null;
-  
+
   if ($row == 1) {
 
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -16,6 +16,7 @@ function logInShow(){
       if ($data['password'] === $password) {
 
         $_SESSION['user'] = $data['pseudo'];
+        $_SESSION['userId'] = $data['id_user'];
         header("location:/index.php"); //to redirect back to "index.php" after login
         exit();
 

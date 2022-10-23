@@ -45,6 +45,21 @@ function getArticleId($identifier) {
 	return $articleId;
 }
 
+
+
+function createArticle(string $title, string $content, string $chapo)
+{
+
+	$date=date("Y-m-d H:i:s");
+	$database = dbCommentConnect();
+	$statement = $database->prepare(
+			'INSERT INTO article(title, content, date, chapo, author_id) VALUES(?, ?, ?, ? ,?)'
+	);
+	$affectedLines = $statement->execute([$title, $content,$date,$chapo, $_SESSION["userId"]]);
+
+	return ($affectedLines > 0);
+}
+
 // fonction pour se connecter à la base MySQL
 function dbConnect()
 {
