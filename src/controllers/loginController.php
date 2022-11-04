@@ -17,6 +17,13 @@ function logInShow(){
 
         $_SESSION['user'] = $data['pseudo'];
         $_SESSION['userId'] = $data['id_user'];
+        if ($data['is_admin']==1) {
+          $_SESSION['typeUser'] = "Admin";
+        }else {
+          $_SESSION['typeUser'] = "User";
+        }
+
+
         header("location:/index.php"); //to redirect back to "index.php" after login
         exit();
 

@@ -26,7 +26,7 @@ function logIn(){
     $email= htmlspecialchars($_POST['email']);
     $password= htmlspecialchars($_POST['password']);
 
-    $checkUser= $database->prepare('SELECT pseudo, email, password, id_user FROM iduser WHERE email =?');
+    $checkUser= $database->prepare('SELECT pseudo, email, password, id_user, is_admin FROM iduser WHERE email =?');
     $checkUser->execute(array($email));
     $data = $checkUser->fetch();
     $row = $checkUser->rowCount();
@@ -36,7 +36,6 @@ function logIn(){
   }
 
 }
-
 
 
 
@@ -52,11 +51,12 @@ function signIn(){
   $data = $checkUser->fetch();
   $row = $checkUser->rowCount();
 
-  var_dump($row);
+
   //ci dessous migrer code vers controller
   return array($pseudo, $email, $password, $data, $row);
 
 }
+
 
 
 

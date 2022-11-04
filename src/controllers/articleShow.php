@@ -8,6 +8,7 @@ function articleShow(string $identifier){
 
   $articleId = getArticleId($identifier);
   $commentId = getComments($identifier);
+  $articleAuthor = getArticleAuthor($identifier);
   require('templates/article.php');
 
 }

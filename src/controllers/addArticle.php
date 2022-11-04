@@ -7,7 +7,8 @@ function addArticle(array $input){
   $title = null;
   $chapo = null;
   $content = null;
-
+}
+function newArticle(array $input){
   if (!empty($input['title']) && !empty($input['chapo']) && !empty($input['content'])) {
     $title = $input['title'];
     $chapo = $input['chapo'];
@@ -22,7 +23,7 @@ function addArticle(array $input){
   if (!$success) {
     throw new Exception('Les données du formulaire sont invalides.');
   }else {
-    //    header('Location:index.php?action=listeArticles');
+
 
   }
 

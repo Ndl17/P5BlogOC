@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 
 <style>
 #imgHome {
@@ -175,25 +174,28 @@ data-template="vertical-menu-template-free"
           </ul>
         </li>
       <?php } ?>
-
-      <li class="menu-item">
-        <a href="javascript:void(0);" class="menu-link menu-toggle">
-          <i class="menu-icon tf-icons bx bx-dock-top"></i>
-          <div data-i18n="Account Settings">Admin</div>
-        </a>
-        <ul class="menu-sub">
+      <?php  if (isset($_SESSION['user'])) { ?>
+        <?php if ($_SESSION['typeUser'] =='Admin') {  ?>
           <li class="menu-item">
-            <a href="pages-account-settings-account.html" class="menu-link">
-              <div data-i18n="Account">TODO</div>
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <i class="menu-icon tf-icons bx bx-dock-top"></i>
+              <div data-i18n="Account Settings">Admin</div>
             </a>
-          </li>
-          <li class="menu-item">
-            <a href="pages-account-settings-notifications.html" class="menu-link">
-              <div data-i18n="Notifications">TODO</div>
-            </a>
-          </li>
+            <ul class="menu-sub">
+              <li class="menu-item">
+                <a href="index.php?action=adminComments" class="menu-link">
+                  <div data-i18n="Account">Modération Commentaires</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="pages-account-settings-notifications.html" class="menu-link">
+                  <div data-i18n="Notifications">TODO</div>
+                </a>
+              </li>
 
-        </ul>
+            </ul>
+          <?php } ?>
+        <?php } ?>
       </aside>
 
       <!-- / Menu -->
@@ -348,14 +350,10 @@ data-template="vertical-menu-template-free"
               <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">OpenClassroom</a>
             </div>
             <div>
-              <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">A CHANGER</a>
-              <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">A CHANGER</a>
+                <?php if( empty($_SESSION['user']) ){?>
+              <a href="index.php?action=logIn" target="_blank" class="footer-link me-4">Connexion Admin</a>
+<?php } ?>
 
-              <a
-              href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-              target="_blank"
-              class="footer-link me-4"
-              >A CHANGER</a>
 
 
             </div>

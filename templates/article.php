@@ -23,15 +23,29 @@ hr{
 
 <!-- article Card  -->
 <div class="card  mb-4">
-  <div class="card-header py-3">
 
-    <h6 class="m-0 font-weight-bold text-primary"><?php echo $articleId["title"]; ?></h6>
-  </div>
-  <div class="card-body">
-    <p style="font-weight:bold"><?php echo $articleId["content"]; ?></p>
-  </div>
 
-</div>
+
+
+    <div class="card-header py-3">
+
+      <h6 class="m-0 font-weight-bold text-primary"><?php echo $articleId["title"]; ?></h6>
+      <h8 class="m-0 font-weight-bold text"><?php echo $articleId["chapo"]; ?></h8>
+    </div>
+
+
+    <div class="card-body">
+      <p style="font-weight:bold"><?php echo $articleId["content"]; ?></p>
+    </div>
+
+
+    <div class="card-body">
+      <h6>Publié le: <?php echo $articleId["date"]; ?></h6>
+        <h6 class="card-title">Ecrit par: <?php echo $articleAuthor[0]['pseudo']; ?></h6>
+    </div>
+    </div>
+
+
 
 
 <!-- comment Card  -->
@@ -56,6 +70,7 @@ hr{
         </div>
       </div>
 
+
     <?php endforeach; ?>
   </div>
 
@@ -63,6 +78,8 @@ hr{
 
 
 <!-- add comment Card  -->
+<?php  if (isset($_SESSION['user'])) { ?>
+  <?php if ($_SESSION['typeUser'] =='Admin'||$_SESSION['typeUser'] =='User') {  ?>
 
 <div class="card mb-4">
 
@@ -114,7 +131,8 @@ hr{
 
     </div>
 
-
+<?php } ?>
+<?php } ?>
 
 
     <!-- End of Main Content -->
