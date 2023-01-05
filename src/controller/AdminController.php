@@ -34,7 +34,6 @@ class AdminController extends Controller{
         ->fetchAll();
 
         $countComments=count($comments);
-        var_dump($countComments);
         $this->render('/admin/validComment',['comments' => $comments, 'countComments' => $countComments]);
       }
     }
