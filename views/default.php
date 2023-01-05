@@ -309,7 +309,7 @@ data-template="vertical-menu-template-free"
             <div class="alert alert-danger" role="alert"><?php echo $_SESSION['erreur']; unset($_SESSION['erreur']); ?></div>
           <?php endif; ?>
           <?php if (!empty($_SESSION['message'])) :?>
-            <div class="alert alert-sucess" role="alert"><?php echo $_SESSION['message']; unset($_SESSION['message']); ?></div>
+                    <div class="alert alert-success" role="alert"><?php echo $_SESSION['message']; unset($_SESSION['message']);  ?></div>
           <?php endif; ?>
 
 
