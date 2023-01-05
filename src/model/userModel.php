@@ -144,7 +144,6 @@ class UserModel extends Model
   public function setAdmin($is_admin)
   {
     $this->is_admin = $is_admin;
-    var_dump($is_admin);
     return $this;
   }
 
@@ -166,7 +165,6 @@ class UserModel extends Model
   public function setRole($role)
   {
     $this->role = $role;
-    var_dump($role);
     return $this;
   }
 

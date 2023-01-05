@@ -14,8 +14,6 @@
 }
 </style>
 
-<?php         var_dump($_SESSION['user']['id']);
- ?>
 <!-- Begin Page Content -->
 <div class="card mb-4">
   <div class="card-header">

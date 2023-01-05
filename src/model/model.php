@@ -34,19 +34,19 @@ class Model extends Db
 
   //fonction pour créer un élément dans la table
   public function create()
-{
+  {
     $champs = [];
     $inter = [];
     $valeurs = [];
 
     // On boucle pour éclater le tableau
     foreach ($this as $champ => $valeur) {
-        // INSERT INTO annonces (titre, description, actif) VALUES (?, ?, ?)
-        if ($valeur !== null && $champ != 'db' && $champ != 'table') {
-            $champs[] = $champ;
-            $inter[] = "?";
-            $valeurs[] = $valeur;
-        }
+      // INSERT INTO annonces (titre, description, actif) VALUES (?, ?, ?)
+      if ($valeur !== null && $champ != 'db' && $champ != 'table') {
+        $champs[] = $champ;
+        $inter[] = "?";
+        $valeurs[] = $valeur;
+      }
     }
 
     // On transforme le tableau "champs" en une chaine de caractères
@@ -55,51 +55,29 @@ class Model extends Db
 
     // On exécute la requête
     return $this->req('INSERT INTO ' . $this->table . ' (' . $liste_champs . ')VALUES(' . $liste_inter . ')', $valeurs);
-}
+  }
 
-/*
-  //fonction pour update un élément dans la table
-  public function update(){
-    $champs =[];
-    $values =[];
-    //on boucle pour éclater le tableau
-    foreach ($this as $champ => $value) {
-      var_dump($champ);
-      var_dump($value);
-      if($value !==null && $champ !='db' && $champ !='table')
-      $champs[] = "$champ = ?";
-      $values[] = $value;
-    }
-    $values[] = $this->id;
-    // on transforme le tableau champs en chaine de caractères
-    $liste_champs = implode(', ', $champs);
-
-    //on execute la requete
-    return $this->req('UPDATE '.$this->table.' SET '.$liste_champs.' WHERE id = ?', $values);
-
-  }*/
-
-
+  
   public function update()
   {
-      $champs = [];
-      $values = [];
+    $champs = [];
+    $values = [];
 
-      // On boucle pour éclater le tableau
-      foreach ($this as $champ => $value) {
-          // UPDATE annonces SET titre = ?, description = ?, actif = ? WHERE id= ?
-          if ($value !== null && $champ != 'db' && $champ != 'table') {
-              $champs[] = "$champ = ?";
-              $values[] = $value;
-          }
+    // On boucle pour éclater le tableau
+    foreach ($this as $champ => $value) {
+      // UPDATE annonces SET titre = ?, description = ?, actif = ? WHERE id= ?
+      if ($value !== null && $champ != 'db' && $champ != 'table') {
+        $champs[] = "$champ = ?";
+        $values[] = $value;
       }
-      $values[] = $this->id;
+    }
+    $values[] = $this->id;
 
-      // On transforme le tableau "champs" en une chaine de caractères
-      $liste_champs = implode(', ', $champs);
+    // On transforme le tableau "champs" en une chaine de caractères
+    $liste_champs = implode(', ', $champs);
 
-      // On exécute la requête
-      return $this->req('UPDATE ' . $this->table . ' SET ' . $liste_champs . ' WHERE id = ?', $values);
+    // On exécute la requête
+    return $this->req('UPDATE ' . $this->table . ' SET ' . $liste_champs . ' WHERE id = ?', $values);
   }
 
 
