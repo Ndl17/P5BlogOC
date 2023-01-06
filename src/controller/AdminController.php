@@ -97,7 +97,6 @@ class AdminController extends Controller{
         //on va chercher dans la bdd l'utilisateur avec l'email entré
         $userModel = new UserModel;
         $userArray =  $userModel->findOneByEmail(strip_tags($_POST['email']));
-      //  var_dump($userArray);
 
         // si utilisateur existe pas
         if(!$userArray){
@@ -112,8 +111,6 @@ class AdminController extends Controller{
         // on verifie si le mdp est correct
         if (password_verify($_POST['password'], $user->getPassword())) {
           //on crée la session
-        //       var_dump($user);
-        //        exit;
           $user->setSession();
           header('Location: /admin/index');
           exit;
