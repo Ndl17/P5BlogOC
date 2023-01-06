@@ -19,14 +19,11 @@ class UserController extends  Controller
       //on va chercher dans la bdd l'utilisateur avec l'email entré
       $userModel = new UserModel;
       $userArray =  $userModel->findOneByEmail(strip_tags($_POST['email']));
-    //  var_dump($userArray);
 
       // si utilisateur existe pas
       if(!$userArray){
         //on envoie un message de session
         $_SESSION['erreur'] = 'l\'adresse e-mail et/ou le mot de passe est incorrect';
-      //  header('Location: /user/login');
-    //    exit;
 
       }
       // l'utilisateur existe
@@ -34,8 +31,6 @@ class UserController extends  Controller
       // on verifie si le mdp est correct
       if (password_verify($_POST['password'], $user->getPassword())) {
         //on crée la session
-      //       var_dump($user);
-      //        exit;
         $user->setSession();
         header('Location:/main');
         exit;

@@ -28,7 +28,6 @@ class MainController extends  Controller
       $mail= new PHPMailer(true);
       try {
         //Configuration
-        //  $mail->SMTPDebug = SMTP::DEBUG_SERVER;
         $mail->isSMTP();
         $mail->Host = "localhost";
         $mail->Port=1025;

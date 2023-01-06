@@ -13,7 +13,6 @@ class UserModel extends Model
   public function __construct()
   {
 
-    //    $this->table = 'iduser';
     $class = str_replace(__NAMESPACE__.'\\', '', __CLASS__);
     $this->table = strtolower(str_replace('Model', '', $class));
   }

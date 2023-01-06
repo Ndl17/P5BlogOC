@@ -34,7 +34,6 @@ class ArticleController extends Controller{
     $articleAuthor = $articleModel->req("SELECT pseudo, id  FROM user WHERE id =$articles->author_id")->fetch();
     $comments = CommentController::show($id);
     $commentaireForm = CommentController::addComment($id);
-    //$commentaireForm=CommentController::addComment($id);
     //on envoie à la vue
     $this->render('article/detail',compact('articles', 'articleAuthor','comments','commentaireForm'));
 
@@ -122,14 +121,6 @@ class ArticleController extends Controller{
         header('Location: /article');
         exit;
       }
-      /*
-      //on verifie si l'utilisateur est propriétaire de l'annonce
-      if($article->author_id !== $_SESSION['user']['id']){
-      $_SESSION['erreur'] = "Vous n'avez pas accès à cette page";
-      header('Location: /article');
-      exit;
-    }*/
-
     //on traite le formulaire
     if (Form::validate($_POST,['title','chapo','content'])) {
       $title = strip_tags($_POST['title']);
@@ -148,7 +139,6 @@ class ArticleController extends Controller{
       ->setDate($date)
       ->setChapo($chapo)
       ->setAuthorId($idAuthor);
-      //    ->setAuthorId($_SESSION['user']['id'])
       //On enregistre
       $articleModif->update();
       //on redirige
@@ -169,7 +159,6 @@ class ArticleController extends Controller{
       $listAllUsersToArray = array_column($listAllUsers, 'pseudo');
       $listAllUsersIdToArray = array_column($listAllUsers, 'id');
 
-      //  var_dump($array);
       $form = new Form;
       $form->startForm()
       ->addLabelFor('titre', 'Titre de l\'article')

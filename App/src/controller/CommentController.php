@@ -24,7 +24,6 @@ class CommentController extends Controller{
       ->fetchAll();
 
       //on envoie à la vue
-      //$this->render('article/detail',compact('comments'));
       return $comments;
     }
 
