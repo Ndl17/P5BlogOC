@@ -11,11 +11,19 @@ require_once ROOT."/vendor/phpmailer/phpmailer/src/PHPMailer.php";
 require_once ROOT."/vendor/phpmailer/phpmailer/src/SMTP.php";
 
 /**
-*
+*Classe MainController
+*Cette classe gère les actions relatif a la page d'accueil,
+*telles que l'affichage de la page, l'envoie de mail par le formulaire de contact 
+*Elle hérite de la classe Controller qui contient des méthodes utilitaires pour les vues et les sessions.
 */
 class MainController extends  Controller
 {
 
+  /**
+  * index - Cette methode affichera la homepage
+  *contient aussi le formulaire de contact
+  * @return void
+  */
   public function index()
   {
     if (Form::validate($_POST,['nom','email','sujet','message'])) {
@@ -35,21 +43,20 @@ class MainController extends  Controller
 
         //destinataire
         $mail->addAddress("juliengautiernadal@hotmail.com");
+
         //expediteur
         $mail->setFrom($email);
         $mail->Subject = $sujet;
         $mail->Body = $message;
-
         $mail->send();
 
       } catch (Exception $e) {
         echo "Message non envoyé. Erreur:{$mail->ErrorInfo}";
       }
-          $_SESSION['message']="Votre message a bien été envoyé";
+      $_SESSION['message']="Votre message a bien été envoyé";
     }
 
     $form = new Form;
-
     $form->startForm()
     ->addLabelFor('nom', 'Nom')
     ->addInputs('nom','nom', ['id'=>'nom', 'class'=>'form-control'])
@@ -61,7 +68,6 @@ class MainController extends  Controller
     ->addTextArea('message','', ['id'=>'message', 'class'=>'form-control'])
     ->addButton('Envoyer',['class'=>'btn btn-primary'])
     ->endForm();
-
 
     $this->render('main/index', ['contactForm' => $form->create()]);
   }

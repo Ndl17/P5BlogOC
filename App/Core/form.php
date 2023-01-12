@@ -2,13 +2,16 @@
 namespace App\Core;
 
 /**
-*
+*Class Form genère un forumulaire html
 */
+
 class Form
 {
+
   private $formCode ='';
+
   /**
-  *génère le formulaire html
+  * create - génère le formulaire html
   * @return string
   */
   public function create()
@@ -17,7 +20,7 @@ class Form
   }
 
   /**
-  *Valide si tous les champs proposés sont remplis
+  * validate - Valide si tous les champs proposés sont remplis
   * @return array $form array issue de formulaire
   * @return array $inputs array listant les champs obligatoires
   * @return bool
@@ -37,7 +40,7 @@ class Form
 
 
   /**
-  *Ajoute les attributs envoyés à la balise
+  * addAttrib - Ajoute les attributs envoyés à la balise
   * @return array $attribs array tableau associatif
   * @return string chaine de caractère ['class' => 'form-control', 'required' => true]
   */
@@ -63,7 +66,7 @@ class Form
 
 
   /**
-  *réalise la balise d'ouverture du formulaire
+  * startForm - réalise la balise d'ouverture du formulaire
   * @return string $methode Méthode du formulaire (post ou get)
   * @return string $action Action du formulaire
   * @return array $attributs les Attributs
@@ -82,7 +85,7 @@ class Form
 
 
   /**
-  *balise de fermeture du formulaire
+  * endForm - balise de fermeture du formulaire
   * @return Form
   */
   public function endForm():self
@@ -94,7 +97,7 @@ class Form
 
 
   /**
-  *méthode pour l'ajout d'un label de formulaire
+  * addLabelFor - méthode pour l'ajout d'un label de formulaire
   * @return string $for
   * @return string $texte texte entre la balise label
   * @return array $attribs les Attributs
@@ -113,7 +116,7 @@ class Form
 
 
   /**
-  *méthode pour l'ajout d'un input de formulaire
+  *addInputs - méthode pour l'ajout d'un input de formulaire
   * @return string $type
   * @return string $name
   * @return array $attribs les Attributs
@@ -132,7 +135,7 @@ class Form
 
 
   /**
-  *méthode pour l'ajout d'un text area de formulaire
+  *addTextArea - méthode pour l'ajout d'un text area de formulaire
   * @return string $name
   * @return string $value
   * @return array $attribs les Attributs
@@ -150,7 +153,7 @@ class Form
   }
 
   /**
-  *méthode pour l'ajout d'un select de formulaire
+  *addSelectOption - méthode pour l'ajout d'un select de formulaire
   * @return string $name
   * @return array $options
   * @return array $attribs les Attributs
@@ -173,28 +176,37 @@ class Form
     return $this;
   }
 
+
+  /**
+  * addSelectOptionText - Ajout de options dans une liste déroulante
+  * @param string $name Nom de la liste déroulante
+  * @param array $options Tableau des options à ajouter
+  * @param array $texts Tableau des valeurs à afficher pour chaque option (si vide, utilise les valeurs de $options)
+  * @param array $attribs Tableau associatif des attributs à ajouter à la balise select
+  * @return Form
+  */
   public function addSelectOptionText(string $name, array $options, array $texts=NULL, array $attribs = []):self
   {
-      // On crée le select
-      $this->formCode .= "<select name='$name'";
+    // On crée le select
+    $this->formCode .= "<select name='$name'";
 
-      // On ajoute les attributs
-      $this->formCode .= $attribs ? $this->addAttrib($attribs).'>' : '>';
+    // On ajoute les attributs
+    $this->formCode .= $attribs ? $this->addAttrib($attribs).'>' : '>';
 
-      // On ajoute les options
-      foreach($options as $key => $value){
-          $text = $texts[$key];
-          $this->formCode .= "<option value=\"$value\">$text</option>";
-      }
+    // On ajoute les options
+    foreach($options as $key => $value){
+      $text = $texts[$key];
+      $this->formCode .= "<option value=\"$value\">$text</option>";
+    }
 
-      // On ferme le select
-      $this->formCode .= '</select>';
+    // On ferme le select
+    $this->formCode .= '</select>';
 
-      return $this;
+    return $this;
   }
 
   /**
-  *méthode pour l'ajout d'un select de formulaire
+  * addButton - méthode pour l'ajout d'un select de formulaire
   * @return string $text
   * @return array $attribs les Attributs
   * @return Form

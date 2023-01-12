@@ -3,12 +3,21 @@ namespace App\Src\Controller;
 
 use App\Core\Form;
 use App\Src\Model\UserModel;
+
 /**
-*
+*Classe UserController
+*Cette classe gère les actions liées à la connexion/inscription des utilisateurs au site,
+*Elle hérite de la classe Controller qui contient des méthodes utilitaires pour les vues et les sessions.
 */
+
 class UserController extends  Controller
 {
 
+  /**
+  * login - methode pour le login des utilisateur
+  *affiche aussi la vue login
+  * @return void
+  */
   public function login()
   {
     //verifie si le formulaire est complet
@@ -24,7 +33,6 @@ class UserController extends  Controller
       if(!$userArray){
         //on envoie un message de session
         $_SESSION['erreur'] = 'l\'adresse e-mail et/ou le mot de passe est incorrect';
-
       }
       // l'utilisateur existe
       $user = $userModel->hydrate($userArray);
@@ -41,9 +49,7 @@ class UserController extends  Controller
       }
     }
 
-
     $form = new Form;
-
     $form->startForm()
     ->addLabelFor('email', 'E-mail:')
     ->addInputs('email','email',['id'=>'email', 'class'=>'form-control','required'=>''])
@@ -57,8 +63,11 @@ class UserController extends  Controller
 
 
 
-
-
+  /**
+  * register - methode pour le register des utilisateur
+  *affiche aussi la vue register
+  * @return void
+  */
   public function register(){
 
     $form = new Form;
@@ -73,8 +82,10 @@ class UserController extends  Controller
       ->setPseudo($pseudo)
       ->setRole($id_admin);
       $user->create();
+      $_SESSION['message'] = 'Votre compte a bien été créé !';
+      header('Location: /user/register');
+      exit;
     }
-
 
     $form->startForm('post','',['class'=>'mb-3'])
     ->addLabelFor('email', 'E-mail:')
@@ -89,9 +100,10 @@ class UserController extends  Controller
     $this->renderNoNavs('user/register', ['registerForm' => $form->create()]);
   }
 
-
-
-  //deconnexion utilisateur
+  /**
+  * methode pour le logout des utilisateur
+  * @return void
+  */
   public function logout(){
     unset($_SESSION['user']);
     header('Location: '.$_SERVER['HTTP_REFERER']);

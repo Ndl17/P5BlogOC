@@ -22,7 +22,7 @@ data-template="vertical-menu-template-free"
   content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
   />
 
-  <title>Login Basic - Pages | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+  <title>Login Admin - Projet Blog OC</title>
 
   <meta name="description" content="" />
 
@@ -134,6 +134,9 @@ data-template="vertical-menu-template-free"
         <p class="mb-4">Vous êtes sur l'espace de connexion <strong>Admin</strong><br> Si vous n'êtes pas Admin vous serez redirigé vers la page d'accueil. </p>
         <?php if (!empty($_SESSION['erreur'])) :?>
           <div class="alert alert-danger" role="alert"><?php echo $_SESSION['erreur']; unset($_SESSION['erreur']); ?></div>
+        <?php endif; ?>
+        <?php if (!empty($_SESSION['message'])) :?>
+                  <div class="alert alert-success" role="alert"><?php echo $_SESSION['message']; unset($_SESSION['message']);  ?></div>
         <?php endif; ?>
         <?php echo $loginForm;  ?>
       </div>

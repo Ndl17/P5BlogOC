@@ -23,7 +23,7 @@ data-template="vertical-menu-template-free"
   content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
   />
 
-  <title>Blog OC : S'Inscrire</title>
+  <title>Register - Projet Blog OC</title>
 
   <meta name="description" content="" />
 
@@ -60,7 +60,12 @@ data-template="vertical-menu-template-free"
 
 <body>
   <!-- Content -->
-
+  <?php if (!empty($_SESSION['erreur'])) :?>
+    <div class="alert alert-danger" role="alert"><?php echo $_SESSION['erreur']; unset($_SESSION['erreur']); ?></div>
+  <?php endif; ?>
+  <?php if (!empty($_SESSION['message'])) :?>
+    <div class="alert alert-success" role="alert"><?php echo $_SESSION['message']; unset($_SESSION['message']); ?></div>
+  <?php endif; ?>
   <div class="container-xxl">
     <div class="authentication-wrapper authentication-basic container-p-y">
       <div class="authentication-inner">

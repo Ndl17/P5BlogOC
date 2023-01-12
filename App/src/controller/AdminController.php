@@ -6,20 +6,36 @@ use App\Src\Model\ArticleModel;
 use App\Src\Model\UserModel;
 use App\Src\Model\CommentModel;
 
+/**
+*Classe AdminController
+*Cette classe gère les actions liées à l'administration du site,
+*telles que la validation et la suppression de commentaires,
+*la suppression d'articles, et l'affichage de la page d'administration.
+*Elle hérite de la classe Controller qui contient des méthodes utilitaires pour les vues et les sessions.
+*/
+
 class AdminController extends Controller{
 
 
-
+  /**
+  * index - Cette méthode affichera la page d'administration qui contient la liste de tous les articles.
+  * @return void
+  */
   public function index(){
     if ($this->isAdmin()) {
       $articleModel = new ArticleModel;
-      //on va chercher tous les articles
+      //on va chercher tous les articles créés
       $articles = $articleModel->req("SELECT * FROM article ORDER BY article.date DESC")->fetchAll();
 
       $this->render('admin/index',['articles' => $articles]);
     }
   }
 
+  /**
+  * validComment - Cette méthode affichera la page de modération
+  * des commentaires qui contient la liste de tous les commentaires non vérifiés.
+  * @return void
+  */
   public function validComment(){
 
     if ($this->isAdmin()) {
@@ -38,7 +54,12 @@ class AdminController extends Controller{
       }
     }
 
-    public function checkComment($id){
+    /**
+    * checkComment - Cette méthode mettra à jour le statut "isChecked" du commentaire spécifié en l'affichant dans les articles.
+    * @param int $id - L'ID du commentaire à valider.
+    * @return void
+    */
+    public function checkComment(int $id){
       if ($this->isAdmin()) {
         $commentsModel = new CommentModel;
         $comment = $commentsModel->find($id);
@@ -51,6 +72,11 @@ class AdminController extends Controller{
       }
     }
 
+    /**
+    * deleteComment - Cette méthode supprimera le commentaire spécifié de la base de données.
+    * @param int $id - L'ID du commentaire à supprimer.
+    * @return void
+    */
     public  function deleteComment(int $id)
     {
       if ($this->isAdmin()) {
@@ -61,6 +87,11 @@ class AdminController extends Controller{
       }
     }
 
+    /**
+    *deleteArticle - Cette méthode supprimera l'article spécifié de la base de données.
+    *@param int $id - L'ID de l'article à supprimer.
+    *@return void
+    */
     public  function deleteArticle(int $id)
     {
       if ($this->isAdmin()) {
@@ -71,7 +102,11 @@ class AdminController extends Controller{
       }
     }
 
-    //fonction qui verifie si on est admin
+    /**
+    * isAdmin - Cette méthode vérifie si l'utilisateur connecté est un administrateur ou non.
+    * @return bool Retourne vrai si l'utilisateur est un administrateur, faux sinon.
+    * En cas de faux, une redirection est effectuée avec un message d'erreur.
+    */
     private function isAdmin(){
       if (isset($_SESSION['user']) && $_SESSION['user']['role'] == 'Admin') {
         //on a le role admin
@@ -85,8 +120,11 @@ class AdminController extends Controller{
     }
 
 
-
-
+    /**
+    * loginAdmin - methode pour le login des admin
+    * affiche aussi la vue login Admin
+    * @return void
+    */
     public function loginAdmin()
     {
       //verifie si le formulaire est complet
@@ -102,10 +140,8 @@ class AdminController extends Controller{
         if(!$userArray){
           //on envoie un message de session
           $_SESSION['erreur'] = 'l\'adresse e-mail et/ou le mot de passe est incorrect';
-        //  header('Location: /user/login');
-      //    exit;
-
         }
+
         // l'utilisateur existe
         $user = $userModel->hydrate($userArray);
         // on verifie si le mdp est correct
@@ -121,9 +157,7 @@ class AdminController extends Controller{
         }
       }
 
-
       $form = new Form;
-
       $form->startForm()
       ->addLabelFor('email', 'E-mail:')
       ->addInputs('email','email',['id'=>'email', 'class'=>'form-control','required'=>''])
@@ -134,17 +168,6 @@ class AdminController extends Controller{
 
       $this->renderNoNavs('admin/loginAdmin', ['loginForm' => $form->create()]);
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
   }

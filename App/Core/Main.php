@@ -4,10 +4,17 @@ use App\Src\Controller\MainController;
 use App\Src\Controller\Controller;
 
 
+/**
+*Class Main gère les routes de l'application
+*/
 
-//Fichier ROOTER
 Class Main
 {
+
+/**
+* start - Méthode qui démarre la session, nettoie l'URL et gère les
+* paramètres de l'URL pour instancier les controllers et Les actions appropriées
+*/
 
   public function start(){
 

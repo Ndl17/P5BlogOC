@@ -7,6 +7,13 @@ namespace App\Core;
 use PDO;
 use PDOExeception;
 
+
+/**
+*Classe DB qui hérite de PDOStatement
+*Elle se charge de se connecter à la BDD et de
+*retourner une instance unique de la classes
+*/
+
 class Db extends PDO
 {
   //instance unique de la classes
@@ -18,6 +25,9 @@ class Db extends PDO
   private const DBPASS = '';
   private const DBNAME = 'blog_oc';
 
+  /**
+  * Constructeur de la classe qui se connecte à la base de donnée
+  */
   private function __construct()
   {
     // DSN de connexion
@@ -32,9 +42,14 @@ class Db extends PDO
     } catch (PDOExeception $e) {
       die($e->getMessage());
     }
-
-
   }
+
+
+  /**
+  * Retourne une instance unique de la classe
+  * @return object - Retourne une instance de la classe
+  */
+
 
   public static function getInstance()
   {

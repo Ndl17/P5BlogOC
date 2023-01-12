@@ -3,37 +3,45 @@ namespace App\Src\Controller;
 
 use App\Core\Form;
 use App\Src\Model\CommentModel;
+
+/**
+*Classe CommentController
+*Cette classe gère les actions relatif aux commentaires des articles du site,
+*telles que l'affichage de la page, ajout 
+*Elle hérite de la classe Controller qui contient des méthodes utilitaires pour les vues et les sessions.
+*/
 class CommentController extends Controller{
 
-
-
   /**
-  * Cette methode affichera un article
-  *@param int id de l'annonce
+  * show - Cette methode affichera la liste des commentaires d'un article précis
+  *sera appelé de manière statique dans articleController
+  *@param int $id de l'article
+  * @return array $comments  array contenant tous les commentaires de l'article
   */
 
   public static function show(int $id){
     //on instancie le Model
     $commentModel = new CommentModel;
-    // on va chercher un article pa rapport à son id
-    //    $comments = $commentModel->findByArticleId($id);
+    // on va chercher les commentaire en fonction de l'id de l'article
     $comments = $commentModel
     ->req("SELECT user.pseudo, comment.contentCom, comment.dateComment
       FROM user INNER JOIN comment ON user.id = comment.author_id
       WHERE comment.article_id = $id AND comment.isChecked != 0 ")
       ->fetchAll();
 
-      //on envoie à la vue
+
       return $comments;
     }
 
 
 
     /**
-    * Cette methode ajoutera une annonce
+    * addComment - Cette methode contient le formulaire d'ajout de commentaires
+    * sera appelé de manière statique dans articleController
     *@param int id de l'annonce
+    * @return array $commentaireForm  array contenant le formulaire
     */
-    public  static function addComment($id){
+    public static function addComment(int $id){
       // on verifie si l'utilisateur est connecté
       // on verifie si l'utilisateur est connecté
       if (isset($_SESSION['user']) && !empty($_SESSION['user']['id'])) {
@@ -61,19 +69,14 @@ class CommentController extends Controller{
           exit;
         }
 
-
         $form = new Form;
         $form->startForm()
         ->addLabelFor('Commentaire', 'Commentaire:')
         ->addTextArea('contentCom','', ['id'=>'contentCom', 'class'=>'form-control'])
         ->addButton('Valider',['class'=>'btn btn-primary'])
         ->endForm();
-
-
         $commentaireForm=$form->create();
-
         return $commentaireForm;
-
 
       }
 

@@ -1,6 +1,8 @@
 <?php
 namespace App\Src\Model;
-
+/**
+* Modèle pour la table "user"
+*/
 class UserModel extends Model
 {
   protected $id;
