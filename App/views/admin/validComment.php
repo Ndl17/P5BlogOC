@@ -9,7 +9,7 @@
       <?php echo $_SESSION['message']; unset($_SESSION['message']); ?>
     </div>
   <?php endif; ?>
-  
+
   <?php if ($countComments == 0) { ?>
     <div class="alert alert-success" role="alert"> <?php echo $_SESSION['user']['pseudo']; ?>👋, Tous les commentaires ont été modérés! </div>
 
@@ -31,7 +31,7 @@
         <div class="card mb-4 comment">
           <div class="card-header">
             <h6 class="card-title">Publié par : <strong><?php echo $comment->pseudo; ?></strong> </h6>
-            <h6 class="card-title">Sur l'article : <strong><?php echo $comment->title; // echo $commentUnChecked['titreArticle']; ?></strong> </h6>
+            <h6 class="card-title">Sur l'article : <strong><?php echo $comment->title; ?></strong> </h6>
 
             <hr>
           </div>

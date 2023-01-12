@@ -100,7 +100,7 @@ class CommentModel extends Model{
   /**
   * Get the value of chapo
   */
-  public function getAuthor_id():string
+  public function setAuthorId():string
   {
     return $this->author_id;
   }
@@ -110,7 +110,7 @@ class CommentModel extends Model{
   *
   * @return  self
   */
-  public function setAuthor_id(string $author_id):self
+  public function setAuthorId(string $author_id):self
   {
     $this->author_id = $author_id;
 
@@ -121,7 +121,7 @@ class CommentModel extends Model{
   /**
   * Get the value of author_id
   */
-  public function getArticle_id():int
+  public function setArticleId():int
   {
     return $this->article_id;
   }
@@ -131,7 +131,7 @@ class CommentModel extends Model{
   *
   * @return  self
   */
-  public function setArticle_id(int $article_id):self
+  public function setArticleId(int $article_id):self
   {
     $this->article_id = $article_id;
 
