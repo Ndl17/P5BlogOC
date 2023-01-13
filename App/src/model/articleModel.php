@@ -19,15 +19,15 @@ class ArticleModel extends Model{
 
   /**
   * Get the value of id_article
+  *@return int
   */
-  public function getId():int
+  public function getId()
   {
     return $this->id;
   }
 
   /**
   * Set the value of id_article
-  *
   * @return  self
   */
   public function setId(int $id):self
@@ -39,15 +39,15 @@ class ArticleModel extends Model{
 
   /**
   * Get the value of title
+  * @return string
   */
-  public function getTitle():string
+  public function getTitle()
   {
     return $this->title;
   }
 
   /**
   * Set the value of title
-  *
   * @return  self
   */
   public function setTitle(string $title):self
@@ -59,8 +59,9 @@ class ArticleModel extends Model{
 
   /**
   * Get the value of content
+  * @return string
   */
-  public function getContent():string
+  public function getContent()
   {
     return $this->content;
   }
@@ -79,6 +80,7 @@ class ArticleModel extends Model{
 
   /**
   * Get the value of date
+  * @return string
   */
   public function getDate()
   {
@@ -90,7 +92,7 @@ class ArticleModel extends Model{
   *
   * @return  self
   */
-  public function setDate($date):self
+  public function setDate(string $date):self
   {
     $this->date = $date;
 
@@ -99,8 +101,9 @@ class ArticleModel extends Model{
 
   /**
   * Get the value of chapo
+  * @return string
   */
-  public function getChapo():string
+  public function getChapo()
   {
     return $this->chapo;
   }
@@ -120,8 +123,9 @@ class ArticleModel extends Model{
 
   /**
   * Get the value of author_id
+  * @return int
   */
-  public function getAuthorId():int
+  public function getAuthorId()
   {
     return $this->author_id;
   }

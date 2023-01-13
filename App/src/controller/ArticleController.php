@@ -31,8 +31,8 @@ class ArticleController extends Controller{
   /**
   * detail - Cette methode affichera un article
   * @param int id de l'annonce
+  * @return void
   */
-
   public function detail(int $id){
     //on instancie le Model
     $articleModel = new ArticleModel;

@@ -33,7 +33,7 @@ class UserModel extends Model
   * Crée la session de l'utilisateur
   * @return void
   */
-  public function setSession()
+  public function setSession():void
   {
     $_SESSION['user'] = [
       'id' => $this->id,
@@ -46,7 +46,7 @@ class UserModel extends Model
   /**
   * Get the value of id
   */
-  public function getId()
+  public function getId():int
   {
     return $this->id;
   }
@@ -56,7 +56,7 @@ class UserModel extends Model
   *
   * @return  self
   */
-  public function setId($id)
+  public function setId(int $id)
   {
     $this->id = $id;
 
@@ -67,7 +67,7 @@ class UserModel extends Model
   /**
   * Get the value of pseudo
   */
-  public function getPseudo()
+  public function getPseudo():string
   {
     return $this->pseudo;
   }
@@ -77,7 +77,7 @@ class UserModel extends Model
   *
   * @return  self
   */
-  public function setPseudo($pseudo)
+  public function setPseudo(string $pseudo)
   {
     $this->pseudo = $pseudo;
 
@@ -89,7 +89,7 @@ class UserModel extends Model
   /**
   * Get the value of email
   */
-  public function getEmail()
+  public function getEmail():string
   {
     return $this->email;
   }
@@ -99,7 +99,7 @@ class UserModel extends Model
   *
   * @return  self
   */
-  public function setEmail($email)
+  public function setEmail(string $email)
   {
     $this->email = $email;
 
@@ -109,7 +109,7 @@ class UserModel extends Model
   /**
   * Get the value of password
   */
-  public function getPassword()
+  public function getPassword():string
   {
     return $this->password;
   }
@@ -119,7 +119,7 @@ class UserModel extends Model
   *
   * @return  self
   */
-  public function setPassword($password)
+  public function setPassword(string $password)
   {
     $this->password = $password;
 
@@ -127,43 +127,21 @@ class UserModel extends Model
   }
 
 
-
   /**
-  * Get the value of password
+  * Get the value of role
   */
-  public function getAdmin()
-  {
-    return $this->is_admin;
-
-  }
-
-  /**
-  * Set the value of password
-  *
-  * @return  self
-  */
-  public function setAdmin($is_admin)
-  {
-    $this->is_admin = $is_admin;
-    return $this;
-  }
-
-
-  /**
-  * Get the value of password
-  */
-  public function getRole()
+  public function getRole():string
   {
     return $this->role;
 
   }
 
   /**
-  * Set the value of password
+  * Set the value of role
   *
   * @return  self
   */
-  public function setRole($role)
+  public function setRole(string $role)
   {
     $this->role = $role;
     return $this;

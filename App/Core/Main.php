@@ -14,6 +14,7 @@ Class Main
 /**
 * start - Méthode qui démarre la session, nettoie l'URL et gère les
 * paramètres de l'URL pour instancier les controllers et Les actions appropriées
+* @return void
 */
 
   public function start(){

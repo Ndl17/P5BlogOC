@@ -80,7 +80,7 @@ class CommentModel extends Model{
   /**
   * Get the value of date
   */
-  public function getIsChecked()
+  public function getIsChecked():int
   {
     return $this->isChecked;
   }
@@ -90,7 +90,7 @@ class CommentModel extends Model{
   *
   * @return  self
   */
-  public function setIsChecked($isChecked):self
+  public function setIsChecked(int $isChecked):self
   {
     $this->isChecked = $isChecked;
 
@@ -110,7 +110,7 @@ class CommentModel extends Model{
   *
   * @return  self
   */
-  public function setAuthorId(string $author_id):self
+  public function setAuthorId(int $author_id):self
   {
     $this->author_id = $author_id;
 
