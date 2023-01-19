@@ -1,7 +1,7 @@
 # Projet 5 OpenClassrooms - Créez votre premier blog en PHP
 
 ## Score de qualité du code :
-https://insight.symfony.com/projects/4b43c49c-f1d8-462b-b128-23b5b30f0544/big.svghttps://insight.symfony.com/projects/4b43c49c-f1d8-462b-b128-23b5b30f0544/big.svg
+[![SymfonyInsight](https://insight.symfony.com/projects/4b43c49c-f1d8-462b-b128-23b5b30f0544/big.svg)](https://insight.symfony.com/projects/4b43c49c-f1d8-462b-b128-23b5b30f0544)
 
 ## Informations :
 Thème du site choisi : Sneat - Free Bootstrap 5 Template
