@@ -7,7 +7,7 @@ namespace App\Core;
 use PDO;
 use PDOExeception;
 
-require_once ROOT.'\config\config.php';
+require_once ROOT.'/config/config.php';
 /**
 *Classe DB qui hérite de PDOStatement
 *Elle se charge de se connecter à la BDD et de

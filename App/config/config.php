@@ -1,5 +1,5 @@
 <?php
-define('DBHOST', '');
-define('DBUSER', '');
+define('DBHOST', 'localhost');
+define('DBUSER', 'root');
 define('DBPASS', '');
-define('DBNAME', '');
+define('DBNAME', 'blog_oc');

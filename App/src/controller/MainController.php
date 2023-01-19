@@ -9,11 +9,11 @@ use PHPMailer\PHPMailer\SMTP;
 require_once ROOT."/vendor/phpmailer/phpmailer/src/Exception.php";
 require_once ROOT."/vendor/phpmailer/phpmailer/src/PHPMailer.php";
 require_once ROOT."/vendor/phpmailer/phpmailer/src/SMTP.php";
-
+require_once ROOT.'/config/configSmtp.php';
 /**
 *Classe MainController
 *Cette classe gère les actions relatif a la page d'accueil,
-*telles que l'affichage de la page, l'envoie de mail par le formulaire de contact 
+*telles que l'affichage de la page, l'envoie de mail par le formulaire de contact
 *Elle hérite de la classe Controller qui contient des méthodes utilitaires pour les vues et les sessions.
 */
 class MainController extends  Controller
@@ -33,16 +33,18 @@ class MainController extends  Controller
       $message = strip_tags($_POST['message']);
 
 
+
+
       $mail= new PHPMailer(true);
       try {
         //Configuration
         $mail->isSMTP();
-        $mail->Host = "localhost";
-        $mail->Port=1025;
-        $mail->CharSet="utf-8";
+        $mail->Host = HOST;
+        $mail->Port= PORT;
+        $mail->CharSet= CHARSET;
 
         //destinataire
-        $mail->addAddress("juliengautiernadal@hotmail.com");
+        $mail->addAddress(MAILDEST);
 
         //expediteur
         $mail->setFrom($email);

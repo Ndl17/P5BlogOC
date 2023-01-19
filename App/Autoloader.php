@@ -8,8 +8,6 @@ namespace App;
 
 class Autoloader
 {
-
-
   /**
    * Enregistrer l'autoloader
    * @return void
