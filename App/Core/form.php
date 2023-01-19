@@ -160,7 +160,7 @@ class Form
   * @return Form
   */
 
-  public function addSelectOption(string $name, string $options, array $attribs=[]):self
+  public function addSelectOption( string $name, array $options, array $attribs=[]):self
   {
     // on ouvre la balise
     $this->formCode .= "<select name='$name'";

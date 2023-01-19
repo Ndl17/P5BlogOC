@@ -7,7 +7,7 @@ namespace App\Core;
 use PDO;
 use PDOExeception;
 
-
+require_once ROOT.'\config\config.php';
 /**
 *Classe DB qui hérite de PDOStatement
 *Elle se charge de se connecter à la BDD et de
@@ -19,22 +19,17 @@ class Db extends PDO
   //instance unique de la classes
   private static $instance;
 
-  // informations de connexion
-  private const DBHOST = 'localhost';
-  private const DBUSER = 'root';
-  private const DBPASS = '';
-  private const DBNAME = 'blog_oc';
-
   /**
   * Constructeur de la classe qui se connecte à la base de donnée
   */
   private function __construct()
   {
+
     // DSN de connexion
-    $_dsn = 'mysql:dbname='. self::DBNAME . ';host=' . self::DBHOST;
+    $_dsn = 'mysql:dbname='. DBNAME . ';host=' . DBHOST;
     //On va appeler le constructeur de la classe PDO
     try {
-      parent::__construct($_dsn, self::DBUSER, self::DBPASS);
+      parent::__construct($_dsn, DBUSER, DBPASS);
       $this->setAttribute(PDO::MYSQL_ATTR_INIT_COMMAND, 'SET NAMES utf8');
       $this->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
       $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

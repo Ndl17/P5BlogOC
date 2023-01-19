@@ -5,12 +5,12 @@ namespace App\Src\Model;
 */
 class ArticleModel extends Model{
 
-  protected string $id;
+  protected int $id;
   protected string $title;
   protected string $content;
   protected string $date;
   protected string $chapo;
-  protected string $author_id;
+  protected int $author_id;
 
   public function __construct()
   {

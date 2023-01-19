@@ -5,12 +5,12 @@ namespace App\Src\Model;
 */
 class CommentModel extends Model{
 
-  protected string $id;
+  protected int $id;
   protected string $contentCom;
   protected string $dateComment;
   protected string $isChecked;
-  protected string $author_id;
-  protected string $article_id;
+  protected int $author_id;
+  protected int $article_id;
 
   public function __construct()
   {

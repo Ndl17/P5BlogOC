@@ -5,12 +5,11 @@ namespace App\Src\Model;
 */
 class UserModel extends Model
 {
-  protected $id;
-  protected $pseudo;
-  protected $email;
-  protected $password;
-  protected $is_admin;
-  protected $role;
+  protected int $id;
+  protected string $pseudo;
+  protected string $email;
+  protected string $password;
+  protected string $role;
 
   public function __construct()
   {

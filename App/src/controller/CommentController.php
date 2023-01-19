@@ -7,7 +7,7 @@ use App\Src\Model\CommentModel;
 /**
 *Classe CommentController
 *Cette classe gère les actions relatif aux commentaires des articles du site,
-*telles que l'affichage de la page, ajout 
+*telles que l'affichage de la page, ajout
 *Elle hérite de la classe Controller qui contient des méthodes utilitaires pour les vues et les sessions.
 */
 class CommentController extends Controller{
@@ -39,7 +39,7 @@ class CommentController extends Controller{
     * addComment - Cette methode contient le formulaire d'ajout de commentaires
     * sera appelé de manière statique dans articleController
     *@param int id de l'annonce
-    * @return array $commentaireForm  array contenant le formulaire
+    * @return string $commentaireForm  array contenant le formulaire
     */
     public static function addComment(int $id){
       // on verifie si l'utilisateur est connecté
@@ -59,8 +59,8 @@ class CommentController extends Controller{
           //on hydrate
           $commentModel->setContentCom($contentCom)
           ->setDateComment($date)
-          ->setAuthor_id($author_id)
-          ->setArticle_id($id);
+          ->setAuthorId($author_id)
+          ->setArticleId($id);
           //On enregistre
           $commentModel->create();
           //on redirige

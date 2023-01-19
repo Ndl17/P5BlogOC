@@ -28,8 +28,6 @@ class Model extends Db
   }
 
 
-
-
   /**
   *findBy - Retourne les éléments de la table spécifiée dans la propriété "table" qui correspondent aux critères spécifiés.
   *    @param array $crits - Un tableau associatif contenant les critères de la requête.
@@ -188,7 +186,7 @@ class Model extends Db
   *@return object - Retourne l'objet actuel pour permettre des appels en chaîne.
   */
 
-  public function hydrate($datas)
+  public function hydrate(object $datas)
   {
     foreach ($datas as $key => $value) {
       //on récupère le nom du setter correspondant à la clé
