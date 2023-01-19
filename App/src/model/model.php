@@ -4,9 +4,9 @@ namespace App\Src\Model;
 use App\Core\Db;
 
 /**
-    *Classe de base pour les modèles qui interagissent avec une base de données.
-    *Elle hérite de la classe Db pour l'accès à la base de données.
-    */
+*Classe de base pour les modèles qui interagissent avec une base de données.
+*Elle hérite de la classe Db pour l'accès à la base de données.
+*/
 
 class Model extends Db
 {
@@ -64,8 +64,10 @@ class Model extends Db
     $champs = [];
     $inter = [];
     $valeurs = [];
+    // Récupérer un tableau des propriétés de l'objet
+    $object_vars = get_object_vars($this);
     // On boucle pour éclater le tableau
-    foreach ($this as $champ => $valeur) {
+    foreach ($object_vars as $champ => $valeur) {
       // INSERT INTO annonces (titre, description, actif) VALUES (?, ?, ?)
       if ($valeur !== null && $champ != 'db' && $champ != 'table') {
         $champs[] = $champ;
@@ -94,9 +96,10 @@ class Model extends Db
   {
     $champs = [];
     $values = [];
-
+    // Récupérer un tableau des propriétés de l'objet
+    $object_vars = get_object_vars($this);
     // On boucle pour éclater le tableau
-    foreach ($this as $champ => $value) {
+    foreach ($object_vars as $champ => $value) {
       // UPDATE annonces SET titre = ?, description = ?, actif = ? WHERE id= ?
       if ($value !== null && $champ != 'db' && $champ != 'table') {
         $champs[] = "$champ = ?";
