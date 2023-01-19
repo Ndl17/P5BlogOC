@@ -53,7 +53,7 @@ class Form
     // on boucle sur l'array d'attributs
     foreach ($attribs as $attrib => $value) {
       // si l'attribut dans la liste est court
-      if(in_array($attrib,$shortAttr) && $value == true){
+      if(in_array($attrib,$shortAttr) && $value === true){
         $str .= " $attrib";
       }else {
         // on ajoute attib='valeur'
