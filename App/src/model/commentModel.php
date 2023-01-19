@@ -8,7 +8,7 @@ class CommentModel extends Model{
   protected int $id;
   protected string $contentCom;
   protected string $dateComment;
-  protected string $isChecked;
+  protected int $isChecked;
   protected int $author_id;
   protected int $article_id;
 
@@ -78,7 +78,7 @@ class CommentModel extends Model{
   }
 
   /**
-  * Get the value of date
+  * Get the value of is checked
   */
   public function getIsChecked():int
   {
@@ -86,7 +86,7 @@ class CommentModel extends Model{
   }
 
   /**
-  * Set the value of date
+  * Set the value of checked
   *
   * @return  self
   */
@@ -100,7 +100,7 @@ class CommentModel extends Model{
   /**
   * Get the value of chapo
   */
-  public function getAuthorIdC():string
+  public function getAuthorId():int
   {
     return $this->author_id;
   }
