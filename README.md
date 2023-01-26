@@ -18,6 +18,9 @@ La version en ligne du site n’est pas encore disponible.
 * Identifiant :
 * Mot de Passe :
 
+## Base SQL :
+Pour importer la base de donnée, récupérez le fichier 'bdd_sql' dans le dossier config.
+
 ## Prérequis :
 * PHP 7.4.26 et Compser. 
 * Un formulaire de contact a été implémenté dans la homepage du site pour pouvoir recevoir les mail, vous devez installer MailHog.
