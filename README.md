@@ -10,13 +10,13 @@ La version en ligne du site n’est pas encore disponible.
 ## Identifiants pour se connecter :
 
 #### Utilisateur :
-* Identifiant :
-* Mot de Passe :
+* Identifiant : user@juliennadal.com
+* Mot de Passe : 12345
 
 
 #### Administrateur :
-* Identifiant :
-* Mot de Passe :
+* Identifiant : admin@juliennadal.com
+* Mot de Passe : 12345
 
 ## Base SQL :
 Pour importer la base de donnée, récupérez le fichier 'bdd_sql' dans le dossier config.
