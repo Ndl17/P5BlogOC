@@ -33,6 +33,8 @@ class UserController extends  Controller
       if(!$userArray){
         //on envoie un message de session
         $_SESSION['erreur'] = 'l\'adresse e-mail et/ou le mot de passe est incorrect';
+        header('Location: /user/login');
+        exit;
       }
       // l'utilisateur existe
       $user = $userModel->hydrate($userArray);
