@@ -125,9 +125,8 @@ class Model extends Db
   */
 
   public function find(int $id){
-    return $this->req("SELECT * FROM {$this->table} WHERE id = $id")->fetch();
+      return $this->req("SELECT * FROM {$this->table} WHERE id = ?", [$id])->fetch();
   }
-
 
 
   /**
@@ -137,9 +136,8 @@ class Model extends Db
   */
 
   public function findByArticleId(int $id){
-    return $this->req("SELECT * FROM {$this->table} WHERE article_id = $id")->fetchAll();
+     return $this->req("SELECT * FROM {$this->table} WHERE article_id = ?", [$id])->fetchAll();
   }
-
 
 
 

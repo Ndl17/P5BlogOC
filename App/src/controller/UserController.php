@@ -76,7 +76,7 @@ class UserController extends  Controller
     if (Form::validate($_POST,['email','password','pseudo'])) {
       $email = strip_tags($_POST['email']);
       $password = password_hash($_POST['password'],PASSWORD_BCRYPT);
-      $pseudo = $_POST['pseudo'];
+      $pseudo = strip_tags($_POST['pseudo']);
       $id_admin = 'user';
       $user = new UserModel;
       $user->setEmail($email)

@@ -157,8 +157,6 @@ class ArticleController extends Controller{
         $_SESSION['message']="Votre modification a été enregistré avec succès";
         header("Location: /article/detail/$id");
         exit;
-      }else {
-
       }
 
       //ici création du formulaire
