@@ -146,7 +146,33 @@ class UserModel extends Model
     return $this;
   }
 
+  /**
+  * getUserFromIdArticle - Cette méthode permet de récupérer les informations relatives
+  * à un utilisateur (pseudo et identifiant) à partir de l'identifiant d'un article.
+  * @param int $id - Identifiant de l'article pour lequel on veut obtenir les informations de l'utilisateur.
+  * @return array - Tableau associatif contenant le pseudo et l'identifiant de l'utilisateur.
+  */
+  public function getUserFromIdArticle(int $id):object
+  {
+    $query = $this->req("SELECT user.pseudo, user.id
+      FROM user
+      INNER JOIN article ON article.author_id = user.id
+      WHERE article.id = $id ")->fetch();
+      return $query;
+    }
 
 
+    /**
+    * getAuthorFromArticle - Cette méthode permet de récupérer les informations sur un auteur d'article à partir de son identifiant (idAuthor)
+    * @param int $idAuthor - Identifiant de l'auteur d'article que l'on souhaite récupérer
+    * @return mixed - Retourne les informations sur l'auteur sous forme d'objet ou false en cas d'échec
+    *
+    */
+    public function getAuthorFromArticle(int $idAuthor):object
+    {
+      $query = $this->req("SELECT pseudo, id  FROM user WHERE id =$idAuthor")->fetch();
+      return $query;
+    }
 
-}
+
+  }

@@ -138,5 +138,34 @@ class CommentModel extends Model{
     return $this;
   }
 
+  /**
+  * La méthode getCommentFromArtId retourne les commentaires associés à un article à partir de son identifiant.
+  * @param int $id L'identifiant de l'article
+  * @return array Tableau associatif contenant les commentaires associés à l'article
+  */
+  public function getCommentFromArtId(int $id):array
+  {
+    $query = $this->req("SELECT user.pseudo, comment.contentCom, comment.dateComment
+      FROM user INNER JOIN comment ON user.id = comment.author_id
+      WHERE comment.article_id = $id AND comment.isChecked != 0 ")
+      ->fetchAll();
 
-}
+      return $query;
+    }
+
+    /**
+    * getCommentForAdmin - Cette fonction retourne les commentaires qui n'ont pas été vérifiés par l'administrateur
+    * @return array Tableau contenant les commentaires à vérifier
+    */
+    public function getCommentForAdmin():array
+    {
+      $query = $this->req("SELECT user.pseudo, comment.contentCom, comment.dateComment, article.title, article.id as idArticle, comment.id as idComment, comment.isChecked
+        FROM user
+        INNER JOIN comment ON user.id = comment.author_id
+        INNER JOIN article ON article.id = comment.article_id
+        WHERE comment.isChecked = 0 ")
+        ->fetchAll();
+
+        return $query;
+      }
+    }

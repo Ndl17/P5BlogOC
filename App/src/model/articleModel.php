@@ -143,4 +143,19 @@ class ArticleModel extends Model{
   }
 
 
+
+  /**
+  * getAllArticleByDate - Cette méthode permet de récupérer l'ensemble des articles triés par date décroissante.
+  * @return array $query - retourne un tableau associatif contenant les articles trouvés
+  *
+  */
+  public function getAllArticleByDate():array
+  {
+    $query = $this->req("SELECT * FROM article ORDER BY article.date DESC")->fetchAll();
+    return $query;
+  }
+
+
+
+
 }
