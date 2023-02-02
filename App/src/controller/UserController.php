@@ -33,6 +33,8 @@ class UserController extends  Controller
       if(!$userArray){
         //on envoie un message de session
         $_SESSION['erreur'] = 'l\'adresse e-mail et/ou le mot de passe est incorrect';
+        header('Location: /user/login');
+        exit;
       }
       // l'utilisateur existe
       $user = $userModel->hydrate($userArray);
@@ -74,7 +76,7 @@ class UserController extends  Controller
     if (Form::validate($_POST,['email','password','pseudo'])) {
       $email = strip_tags($_POST['email']);
       $password = password_hash($_POST['password'],PASSWORD_BCRYPT);
-      $pseudo = $_POST['pseudo'];
+      $pseudo = strip_tags($_POST['pseudo']);
       $id_admin = 'user';
       $user = new UserModel;
       $user->setEmail($email)

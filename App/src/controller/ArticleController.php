@@ -4,6 +4,7 @@ namespace App\Src\Controller;
 use App\Core\Form;
 use App\Src\Model\ArticleModel;
 use App\Src\Model\CommentModel;
+use App\Src\Model\UserModel;
 use App\Src\Controller\CommentController;
 
 /**
@@ -23,7 +24,7 @@ class ArticleController extends Controller{
     // on instancie le model correspondant à la table Article de la bcadd
     $articleModel = new ArticleModel;
     //on va chercher tous les articles
-    $articles = $articleModel->req("SELECT * FROM article ORDER BY article.date DESC")->fetchAll();
+    $articles = $articleModel->getAllArticleByDate();
     //on génère la views
     $this->render('article/index',['articles' => $articles]);
   }
@@ -34,17 +35,33 @@ class ArticleController extends Controller{
   * @return void
   */
   public function detail(int $id){
-    //on instancie le Model
+    //on instancie le Model Article
     $articleModel = new ArticleModel;
     // on va chercher un article par rapport à son id
     $articles = $articleModel->find($id);
-    $test = new ArticleModel;
-    //requete pour recupérer l'article en fonction de
-    $articleAuthor = $articleModel->req("SELECT pseudo, id  FROM user WHERE id =$articles->author_id")->fetch();
-    $comments = CommentController::show($id);
+
+    if(!$articles){
+      http_response_code(404);
+      $_SESSION['erreur'] = "l'article recherché n'existe pas.";
+      header('Location: /article');
+      exit;
+    }
+    
+    //on instancie le Model User
+    $userModel = new UserModel;
+    //requete pour recupérer l'article en fonction de l'id de l'article
+    $articleAuthor= $userModel->getAuthorFromArticle($articles->author_id);
+
+    //on instancie le Model Comment
+    $commentModel = new CommentModel;
+    //On va chercher toutes les infos de la table comment en fonction de l'id de l'article
+    $comments = $commentModel->getCommentFromArtId($id);
+    /*On récupère la fonction addComment du CommentController,
+    pour afficher le formulaire dans la vue et en récupérer les entrées*/
     $commentaireForm = CommentController::addComment($id);
     //on envoie à la vue
     $this->render('article/detail',compact('articles', 'articleAuthor','comments','commentaireForm'));
+
 
   }
 
@@ -129,7 +146,7 @@ class ArticleController extends Controller{
       // si l'annonce n'existe pas, retourne liste article
       if(!$article){
         http_response_code(404);
-        $_SESSION['erreur'] = "l'Article recherché n'existe pas";
+        $_SESSION['erreur'] = "l'article recherché n'existe pas.";
         header('Location: /article');
         exit;
       }
@@ -157,66 +174,62 @@ class ArticleController extends Controller{
         $_SESSION['message']="Votre modification a été enregistré avec succès";
         header("Location: /article/detail/$id");
         exit;
-      }else {
-
       }
 
       //ici création du formulaire
-      $articleModel = new ArticleModel;
-      //récupère tous les users pour avoir une liste d'auteurs
-      $listAllUsers = $articleModel->req("SELECT pseudo, id  FROM user")->fetchAll();
-      //recupère l'auteur de l'article
-      $authorFromArticle = $articleModel->req("SELECT user.pseudo, user.id
-        FROM user
-        INNER JOIN article ON article.author_id = user.id
-        WHERE article.id = $id ")->fetch();
-        $definedAuthor = json_decode(json_encode($authorFromArticle), true);
-        $listAllUsersToArray = array_column($listAllUsers, 'pseudo');
-        $listAllUsersIdToArray = array_column($listAllUsers, 'id');
 
-        //on crée tous les champs du formulaires
-        $form = new Form;
-        $form->startForm()
-        ->addLabelFor('titre', 'Titre de l\'article')
-        ->addInputs('text','title', [
-          'id'=>'title',
-          'class'=>'form-control',
-          'value'=>$article->title
-        ])
-        ->addLabelFor('chapo', 'Chapô')
-        ->addTextArea('chapo',$article->chapo, [
-          'id'=>'chapo',
-          'class'=>'form-control'
-        ])
-        ->addLabelFor('authorDef', 'Auteur définit')
-        ->addSelectOption('authorDef', $definedAuthor,['id'=>'author','class'=>'form-control', 'disabled'=>'disabled'])
+      $userModel = new UserModel;
+      // on récupère l'ensemble des infos de la table User
+      $listAllUsers = $userModel->findAll();
+      //on récupère l'auteur de l'article que l'on veut modifier
+      $authorFromArticle = $userModel->getUserFromIdArticle($id);
+      //on transforme la sortie de données en tableau associatif
+      $definedAuthor = json_decode(json_encode($authorFromArticle), true);
+      //on récupère ici la liste des pseudo
+      $listAllUsersToArray = array_column($listAllUsers, 'pseudo');
+      //on récupère ici la liste des id
+      $listAllUsersIdToArray = array_column($listAllUsers, 'id');
 
-        ->addLabelFor('content', 'Contenu')
-        ->addTextArea('content',$article->content, [
-          'id'=>'content',
-          'class'=>'form-control'
-        ])
-        ->addLabelFor('author', 'Auteur')
-        ->addSelectOptionText('author', $listAllUsersIdToArray, $listAllUsersToArray,['id'=>'author','class'=>'form-control'])
-        ->addButton('Modifier',['class'=>'btn btn-primary'])
-        ->endForm();
+      //on crée tous les champs du formulaires
+      $form = new Form;
+      $form->startForm()
+      ->addLabelFor('titre', 'Titre de l\'article')
+      ->addInputs('text','title', [
+        'id'=>'title',
+        'class'=>'form-control',
+        'value'=>$article->title
+      ])
+      ->addLabelFor('chapo', 'Chapô')
+      ->addTextArea('chapo',$article->chapo, [
+        'id'=>'chapo',
+        'class'=>'form-control'
+      ])
+      ->addLabelFor('authorDef', 'Auteur définit')
+      ->addSelectOption('authorDef', $definedAuthor,['id'=>'author','class'=>'form-control', 'disabled'=>'disabled'])
 
-        //on envoie à la vue
-        $this->render('article/modifier', ['modifiyForm' => $form->create()]);
+      ->addLabelFor('content', 'Contenu')
+      ->addTextArea('content',$article->content, [
+        'id'=>'content',
+        'class'=>'form-control'
+      ])
+      ->addLabelFor('author', 'Auteur')
+      ->addSelectOptionText('author', $listAllUsersIdToArray, $listAllUsersToArray,['id'=>'author','class'=>'form-control'])
+      ->addButton('Modifier',['class'=>'btn btn-primary'])
+      ->endForm();
 
+      //on envoie à la vue
+      $this->render('article/modifier', ['modifiyForm' => $form->create()]);
 
-
-
-      }else {
-        //l'utilisateur n'est pas connecté
-        $_SESSION['erreur'] = "Vous devez être connecté(e) si vous souhaitez accéder à cette page";
-        header('Location: /user/login');
-        exit;
-      }
+    }else {
+      //l'utilisateur n'est pas connecté
+      $_SESSION['erreur'] = "Vous devez être connecté(e) si vous souhaitez accéder à cette page";
+      header('Location: /user/login');
+      exit;
     }
-
-
-
-
-
   }
+
+
+
+
+
+}
