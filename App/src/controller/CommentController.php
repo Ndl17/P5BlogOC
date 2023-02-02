@@ -23,8 +23,8 @@ class CommentController extends Controller{
     //on instancie le Model
     $commentModel = new CommentModel;
     // on va chercher les commentaire en fonction de l'id de l'article
-    $comments = $commentModel->getCommentForAdmin($id)
-    
+    $comments = $commentModel->getCommentForAdmin($id);
+
     return $comments;
   }
 
@@ -37,7 +37,6 @@ class CommentController extends Controller{
   * @return string $commentaireForm  array contenant le formulaire
   */
   public static function addComment(int $id){
-    // on verifie si l'utilisateur est connecté
     // on verifie si l'utilisateur est connecté
     if (isset($_SESSION['user']) && !empty($_SESSION['user']['id'])) {
       //l'utilisateur est connecté
