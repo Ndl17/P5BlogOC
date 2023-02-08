@@ -31,7 +31,7 @@ class ArticleController extends Controller{
 
   /**
   * detail - Cette methode affichera un article
-  * @param int id de l'annonce
+  * @param int id de l'article
   * @return void
   */
   public function detail(int $id){
@@ -46,7 +46,7 @@ class ArticleController extends Controller{
       header('Location: /article');
       exit;
     }
-    
+
     //on instancie le Model User
     $userModel = new UserModel;
     //requete pour recupérer l'article en fonction de l'id de l'article
@@ -129,7 +129,7 @@ class ArticleController extends Controller{
 
 
   /**
-  *  modifier - Méthode pour modifier une annonce
+  *  modifier - Méthode pour modifier un article
   * @param int $id
   * @return void
   */
@@ -137,13 +137,13 @@ class ArticleController extends Controller{
 
 
     if (isset($_SESSION['user']) && !empty($_SESSION['user']['id'])) {
-      // on va verifier si l'annonce existe dans la base
+      // on va verifier si l'article existe dans la base
 
 
       $articleModel = new ArticleModel;
-      //on cherche l'annonce avec l'id $id
+      //on cherche l'article avec l'id $id
       $article = $articleModel->find($id);
-      // si l'annonce n'existe pas, retourne liste article
+      // si l'article n'existe pas, retourne liste article
       if(!$article){
         http_response_code(404);
         $_SESSION['erreur'] = "l'article recherché n'existe pas.";

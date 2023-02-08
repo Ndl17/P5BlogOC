@@ -33,7 +33,7 @@ class CommentController extends Controller{
   /**
   * addComment - Cette methode contient le formulaire d'ajout de commentaires
   * sera appelé de manière statique dans articleController
-  *@param int id de l'annonce
+  *@param int id de l'article
   * @return string $commentaireForm  array contenant le formulaire
   */
   public static function addComment(int $id){

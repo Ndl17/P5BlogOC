@@ -225,7 +225,7 @@ data-template="vertical-menu-template-free"
             <?php if( isset($_SESSION['user']) && !empty($_SESSION['user']) )
             {
               ?>
-              <button type="button" class="btn"><a href="/user/logout" class="btn rounded-pill btn-primary btn-sm">Se déconnecter</a></button>
+              <button type="button" class="btn"><a href="user/logout" class="btn rounded-pill btn-primary btn-sm">Se déconnecter</a></button>
             <?php }else {
               ?>
 

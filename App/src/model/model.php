@@ -68,7 +68,7 @@ class Model extends Db
     $object_vars = get_object_vars($this);
     // On boucle pour éclater le tableau
     foreach ($object_vars as $champ => $valeur) {
-      // INSERT INTO annonces (titre, description, actif) VALUES (?, ?, ?)
+      // INSERT INTO article (titre, description, actif) VALUES (?, ?, ?)
       if ($valeur !== null && $champ != 'db' && $champ != 'table') {
         $champs[] = $champ;
         $inter[] = "?";
@@ -100,7 +100,7 @@ class Model extends Db
     $object_vars = get_object_vars($this);
     // On boucle pour éclater le tableau
     foreach ($object_vars as $champ => $value) {
-      // UPDATE annonces SET titre = ?, description = ?, actif = ? WHERE id= ?
+      // UPDATE articles SET titre = ?, description = ?, actif = ? WHERE id= ?
       if ($value !== null && $champ != 'db' && $champ != 'table') {
         $champs[] = "$champ = ?";
         $values[] = $value;
@@ -165,16 +165,9 @@ class Model extends Db
   {
     // On récupère l'instance de Db
     $this->db = Db::getInstance();
-    // On vérifie si on a des attributs
-    if($attributs !== null){
-      // Requête préparée
-      $query = $this->db->prepare($sql);
-      $query->execute($attributs);
-      return $query;
-    }else {
-      // requête simple
-      return $this->db->query($sql);
-    }
+    $query = $this->db->prepare($sql);
+    $query->execute($attributs);
+    return $query;
   }
 
 
