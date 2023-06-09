@@ -2,7 +2,7 @@
 
 ## Score de qualité du code :
 [![SymfonyInsight](https://insight.symfony.com/projects/4b43c49c-f1d8-462b-b128-23b5b30f0544/big.svg)](https://insight.symfony.com/projects/4b43c49c-f1d8-462b-b128-23b5b30f0544)
-https://insight.symfony.com/projects/b43a3833-730b-4fa5-9fc5-13946ed90d06
+
 
 ## Informations :
 Thème du site choisi : Sneat - Free Bootstrap 5 Template
